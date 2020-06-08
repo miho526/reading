@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-sm-2">
+      <%= image_tag @book.image %>
+    </div>
+    <div class="col-sm-7">
+      <p class="text-center"><%= @book.title %></p>
+      <p class="text-center"><%= @book.author %></p>
+      <p class="text-center">¥<%= @book.price %></p>
+    </div>
+    <div class="col-sm-3">
+      <%= render 'shelves/shelves_button', book: @book %>
+      <div class="ml-3">
+        <% if @book.url %>
+          <%= link_to "楽天ブックスで購入", @book.url, :target=>["_blank"] %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% if @book_posts.any? %>
+    <h3>投稿一覧</h3>
+    <% @book_posts.each do |book_post| %>
+      <% book_post_user = User.find(book_post.user_id) %>
+      <div class="row mb-3">
+        <div class="col-sm-4">
+          <li class="media">
+            <img class="mr-2 rounded" src="<%= gravatar_url(book_post_user, { size: 50 }) %>" alt="">
+            <div class="media-body">
+              <div>
+                <% if current_user == book_post_user %>
+                  <p><%= link_to book_post_user.name, my_books_user_path(book_post_user) %></p>
+                <% else %>
+                  <p><%= link_to book_post_user.name, user_path(book_post_user) %></p>
+                <% end %>
+              </div>
+            </div>
+          </li>
+        </div>
+        <div class="col-sm-8">
+          <div class="mb-3">
+            <p><%= book_post.content %></p>
+          </div>
+          <div class="mb-3">
+            <%= render 'favorites/favorite_button', post: book_post %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>この本はまだ投稿がありません。</p>
+  <% end %>
+</div>
+
+

@@ -1,0 +1,38 @@
+<div class="row">
+  <aside class="col-sm-2">
+    <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 200 }) %>" alt="">
+    <h3><%= @user.name %></h3>
+    <p>レビュー投稿数：<%= @count_posts %></p>
+    <p>読み終わった本：<%= @count_read %>冊</p>
+  </aside>
+  <div class="col-sm-10">
+    <ul class="nav nav-tabs nav-justified mb-3">
+      <li class="nav-item">投稿</li>
+    </ul>
+    <% if @posts.any? %>
+      <ul class="list-unstyled">
+        <% @posts.each do |post| %>
+          <% post_book = Book.find(post.book_id) %>
+          <div class="row">
+            <div class="mr-3">
+              <p><%= post_book.title %></p>
+            </div>
+            <div class="mr-3">
+              <p><%= post_book.author %></p>
+            </div>
+            <div>
+              <p>いいねをもらった数：<%= post.likes.count %></p>
+            </div>
+          </div>
+          <div class="mb-3">
+            <p><%= post.content %></p>
+          </div>
+          <div class="mb-3">
+            <%= render 'favorites/favorite_button', post: post %>
+          </div>
+        <% end %>
+        <%= paginate @posts %>
+      </ul>
+    <% end %>
+  </div>
+</div>

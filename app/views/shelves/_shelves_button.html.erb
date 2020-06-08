@@ -1,0 +1,11 @@
+<% if current_user.having?(book) %>
+  <%= form_with(model: current_user.shelves.find_by(book_id: book.id), local: true, method: :delete) do |f| %>
+    <%= hidden_field_tag :book_id, book.id %>
+    <%= f.submit '本棚から削除', class: 'btn btn-danger btn-block' %>
+  <% end %>
+<% else %>
+  <%= form_with(model: current_user.shelves.build, local: true) do |f| %>
+    <%= hidden_field_tag :book_id, book.id %>
+    <%= f.submit '本棚へ追加', class: 'btn btn-success btn-block' %>
+  <% end %>
+<% end %>

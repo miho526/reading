@@ -1,0 +1,20 @@
+<ul class="nav nav-tabs nav-justified mb-3">
+  <li class="nav-item"><a href="<%= edit_post_path(current_user) %>" class="nav-link active">投稿編集</a></li>
+  <li class="nav-item"><a href="<%= my_books_user_path(current_user) %>" class="nav-link" >本棚</a></li>
+  <li class="nav-item"><a href="<%= my_posts_user_path(current_user) %>" class="nav-link">投稿</a></li>
+</ul> 
+<div class="row">
+  <div class="ml-3 mr-3">
+    <p><%= @book.title %></p>
+  </div>
+  <div>
+    <p><%= @book.author %></p>
+  </div>
+</div>
+<%= form_with(model: @post, local: true, method: :patch) do |f| %>
+  <div class="form-group">
+    <%= f.text_area :content, class: 'form-control', rows: 20 %>
+    <%= hidden_field_tag :post_id, @post.id %>
+  </div>
+  <%= f.submit '投稿', class: 'btn btn-success btn-block'%>
+<% end %>

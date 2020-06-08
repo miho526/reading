@@ -1,0 +1,31 @@
+<% if current_user == @user %>
+  <div class="row">
+    <aside class="col-sm-2">
+      <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 200 }) %>" alt="">
+      <h3><%= @user.name %></h3>
+      <p>レビュー投稿数：<%= @count_posts %></p>
+      <p>読み終わった本：<%= @count_read %>冊</p>
+    </aside>
+    <div class="col-sm-10">
+      <ul class="nav nav-tabs nav-justified mb-3">
+        <li class="nav-item"><a href="<%= my_books_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(my_books_user_path(@user)) %>">本棚</a></li>
+        <li class="nav-item"><a href="<%= my_posts_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(my_posts_user_path(@user)) %>">投稿</a></li>
+      </ul>
+      <ul class="list-unstyled">
+        <% @my_books.each do |my_book| %>
+          <li class="mb-3">
+            <div class="container">
+              <div class="row">
+                <div class="col-5"><%= my_book.title %></div>
+                <div class="col-3"><%= my_book.author %></div>
+                <div class="col-2"><%= render 'posts/post_button', my_book: my_book %></div>
+                <div class="col-2"><%= render 'read_button', my_book: my_book %></div>
+              </div>
+            </div>
+          </li>
+        <% end %>
+        <%= paginate @my_books %>
+      </ul>
+    </div>
+  </div>
+<% end %>

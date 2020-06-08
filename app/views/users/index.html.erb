@@ -1,0 +1,25 @@
+<% if @users.any? %>
+  <% @users.each do |user| %>
+    <ul class="list-unstyled">
+      <li class="media mb-3">
+        <img class="mr-3 rounded" src="<%= gravatar_url(user, { size: 50 }) %>" alt="">
+          <div class="media-body">
+            <% if current_user == user %>
+              <p><%= link_to user.name, my_books_user_path(user) %></p>
+            <% else %>
+              <p><%= link_to user.name, user_path(user) %></p>
+            <% end %>
+            <div class="row">
+              <div class="mr-3">
+              <p>レビュー投稿数：<%= user.posts.count %></p>
+              </div>
+              <div>
+               <p>読み終わった本：<%= user.shelves.where(read_flag: 'true').count %>冊</p>
+              </div>
+            </div>
+          </div>
+      </li>
+    </ul>
+  <% end %>
+  <%= paginate @users %>
+<% end %>

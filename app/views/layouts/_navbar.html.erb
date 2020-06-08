@@ -1,0 +1,17 @@
+<header>
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="collapse navbar-collapse justify-content-center" id="nav-bar">
+        <ul class="navbar-nav">
+          <% if logged_in? %>
+            <li class="nav-item"><%= link_to 'ホーム', root_path, class: 'nav-link'%></li>
+            <li class="nav-item"><%= link_to 'ユーザ', users_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'マイページ', my_books_user_path(current_user),  class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link' %></li>
+          <% else %>
+            <li class="nav-item"><%= link_to 'ユーザ登録', signup_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'ログイン', login_path, class: 'nav-link' %></li>
+          <% end %>
+        </ul>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,9 @@
+<%= form_with(url: read_path, local: true) do |f| %>
+  <% @shelf = current_user.shelves.find_by(book_id: my_book.id) %>
+  <%= hidden_field_tag :book_id, @shelf.book_id %>
+  <% if @shelf.read_flag %> 
+    <p><%= '既読' %></p>
+  <% else %>
+    <%= f.submit '未読', class: 'btn btn-danger btn-block' %>
+  <% end %>
+<% end %>
