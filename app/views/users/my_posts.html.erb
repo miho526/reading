@@ -15,17 +15,17 @@
         <% @posts.each do |post| %>
           <% post_book = Book.find(post.book_id) %>
           <div class="row">
-            <div class="mr-3">
+            <div class="ml-2 mr-3">
               <p><%= post_book.title %></p>
             </div>
             <div class="mr-3">
               <p><%= post_book.author %></p>
             </div>
-            <div class="mr-3">
+            <div class="ml-2 mr-3">
               <p>いいねをもらった数：<%= post.likes.count %></p>
             </div>
           </div>
-          <div class="row mb-3">
+          <div class="row ml-2 mb-3">
             <div class="col-10">
               <p><%= post.content %></p>
            </div>
@@ -34,7 +34,7 @@
                 <div class="mr-1">
                   <%= render 'posts/post_edit_button', post: post %>
                 </div>
-                <%= link_to "削除", post, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger' %>
+                <%= render 'posts/post_delete_button', post: post %>
               </div>
             </div>
           </div>

@@ -12,7 +12,7 @@
       <%= render 'shelves/shelves_button', book: @book %>
       <div class="ml-3">
         <% if @book.url %>
-          <%= link_to "楽天ブックスで購入", @book.url, :target=>["_blank"] %>
+          <%= link_to "　　楽天ブックスで購入", @book.url, :target=>["_blank"] %>
         <% end %>
       </div>
     </div>
@@ -47,7 +47,7 @@
       </div>
     <% end %>
   <% else %>
-    <p>この本はまだ投稿がありません。</p>
+    <p>この本にはまだ投稿がありません。</p>
   <% end %>
 </div>
 
