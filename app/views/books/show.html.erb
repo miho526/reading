@@ -1,20 +1,20 @@
 <div class="container">
-  <div class="row mb-5">
+  <div class="row mt-5 mb-5">
     <div class="col-sm-2">
       <%= image_tag @book.image %>
     </div>
-    <div class="col-sm-7">
-      <p class="text-center"><%= @book.title %></p>
-      <p class="text-center"><%= @book.author %></p>
-      <p class="text-center">¥<%= @book.price %></p>
-    </div>
-    <div class="col-sm-3">
-      <%= render 'shelves/shelves_button', book: @book %>
-      <div class="ml-3">
+    <div class="col-sm-8">
+      <h5 class="text-center"><%= @book.title %></h5><br>
+      <h5 class="text-center"><%= @book.author %></h5><br>
+      <h5 class="text-center">¥<%= @book.price %></h5>
+      <div class="text-center">
         <% if @book.url %>
-          <%= link_to "　　楽天ブックスで購入", @book.url, :target=>["_blank"] %>
+          <br><%= link_to "楽天ブックスで購入", @book.url, :target=>["_blank"] %>
         <% end %>
       </div>
+    </div>
+    <div class="col-sm-2">
+      <%= render 'shelves/shelves_button', book: @book %>
     </div>
   </div>
   <% if @book_posts.any? %>

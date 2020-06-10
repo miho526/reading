@@ -1,9 +1,14 @@
 <h1>Reading</h1>
+
+<h4>本を検索する</h4><br>
+<b>必ず本のタイトルまたは、本のタイトルのキーワードを入力してください。複数検索の場合もタイトルのキーワードで検索してください。</b><br>
+<b>(作者、サブタイトル等を入力しても検索結果が表示されない場合があります。）</b><br>
+<b><font color="red">※楽天ブックスの本（紙の書籍）のみが対象となります。電子書籍、雑誌、洋書、DVD、CD、音楽配信、ゲーム、PCソフト等は対象外となります。</font></b><br><br>
 <%= form_with(url: root_path, method: :get, local: true) do |f| %>
   <div class="form-group input-group">
-    <%= f.text_field :keyword, class: 'form-control', required: true, minlength: 2, maxlength: 60 %>
+    <%= f.text_field :keyword, class: 'form-control', required: true, minlength: 2, maxlength: 60, placeholder: '例：吾輩は猫である、吾輩'%>
     <div class="input-group-append">
-      <%= f.submit '本を検索', class: 'btn btn-success' %>
+      <%= f.submit '検索', class: 'btn btn-success' %>
     </div>
   </div>
 <% end %>

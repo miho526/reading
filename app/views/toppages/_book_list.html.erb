@@ -1,23 +1,28 @@
 <% if books.present? %>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>タイトル</th>
-        <th>著者</th>
-        <th>価格</th>
-        <th></th>
-      </tr>
-    </thead>
-    <% books.each do |book| %>
-      <tbody>
+  <% if @books.count == 0 %>
+    <%= '検索を実行しましたが、お探しの書籍は見当たりませんでした。' %>
+  <% else %>
+    <p>検索結果<%= @books.count %>件(最大３０件までを表示)</p>
+    <table class="table">
+      <thead>
         <tr>
-          <td><%= book.title %></td>
-          <td><%= book.author %></td>
-          <td>¥<%= book.item_price %></td>
-          <td><%= link_to '選択', isbn_path(isbn: book.isbn), method: :post, class: 'btn btn-success btn-sm' %></td>
+          <th>タイトル</th>
+          <th>著者</th>
+          <th>価格</th>
+          <th></th>
         </tr>
-      </tbody>
-    <% end %>
-  </table>
+      </thead>
+      <% books.each do |book| %>
+          <tbody>
+            <tr>
+              <td><%= book.title %></td>
+              <td><%= book.author %></td>
+              <td>¥<%= book.item_price %></td>
+              <td><%= link_to '選択', isbn_path(isbn: book.isbn), method: :post, class: 'btn btn-success btn-sm' %></td>
+            </tr>
+          </tbody>
+      <% end %>
+    </table>
+  <% end %>
 <% end %>
 
